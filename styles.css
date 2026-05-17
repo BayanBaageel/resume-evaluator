@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+    --primary: #4f46e5;
+    --bg-page: #f5f7fa;
+    --bg-card: #ffffff;
+    --text-dark: #1a1a2e;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+}
+
+header {
+    display: flex;
+    justify-content: space-between; /* pushes children to opposite ends */
+    align-items: center; /* vertically centers them */
+    padding: 20px;
+    background: var(--text-dark);
+}
+header h1 {
+    color: white;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* two equal columns */
+    gap: 24px; /* space between columns */
+}
+/* This block only applies when the screen is 700px wide or narrower */
+@media (max-width: 700px) {
+    main {
+        grid-template-columns: 1fr; /* collapse to a single column on mobile */
+    }
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.panel {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+textarea, input[type="file"] {
+    width: 100%;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+}
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    outline: none;
+}
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+button[type="submit"] {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+button[type="submit"]:hover {
+    background: #4338ca;
+}
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
