@@ -1,1 +1,0 @@
-users: dict[str, dict] = {}
