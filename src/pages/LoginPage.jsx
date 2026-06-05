@@ -1,20 +1,38 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import client from '../api/client'
+import { useAuth } from '../context/AuthContext'
 
 function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  function handleSubmit(e) {
+  const { login } = useAuth()
+  const navigate = useNavigate()
+
+  async function handleSubmit(e) {
     e.preventDefault()
-    console.log('Email:', email)
-    console.log('Password:', password)
+    setLoading(true)
+    setError('')
+
+    try {
+      const response = await client.post('/auth/login', { email, password })
+      login(email, response.data.access_token)
+      navigate('/evaluate')
+    } catch (err) {
+      setError(err.response?.data?.detail || 'Login failed')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <main>
       <section className="panel" style={{ maxWidth: '480px', margin: '2rem auto' }}>
         <h2>Login</h2>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit}>
 
           <label htmlFor="email">Email</label>
@@ -35,7 +53,9 @@ function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit" className="login-btn">Login</button>
+          <button type="submit" className="login-btn" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
 
         </form>
         <p style={{ marginTop: '1rem', textAlign: 'center' }}>

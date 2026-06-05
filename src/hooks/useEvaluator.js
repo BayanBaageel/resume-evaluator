@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import client from '../api/client'
 
 function useEvaluator() {
   const [jobDescription, setJobDescription] = useState('')
@@ -8,7 +9,7 @@ function useEvaluator() {
   const [errorMessage, setErrorMessage] = useState(null)
   const [result, setResult] = useState(null)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     if (!jobDescription) {
@@ -25,10 +26,17 @@ function useEvaluator() {
 
     setStatus('loading')
 
-    setTimeout(() => {
+    try {
+      const response = await client.post('/evaluate', {
+        job_description: jobDescription,
+        prompt: prompt,
+      })
       setStatus('success')
-      setResult(`Evaluating ${file.name} against the job description... (AI integration coming in Stage 5)`)
-    }, 1500)
+      setResult(response.data.result)
+    } catch (err) {
+      setStatus('error')
+      setErrorMessage(err.response?.data?.detail || 'Evaluation failed')
+    }
   }
 
   return {
