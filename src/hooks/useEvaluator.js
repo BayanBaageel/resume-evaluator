@@ -27,10 +27,12 @@ function useEvaluator() {
     setStatus('loading')
 
     try {
-      const response = await client.post('/evaluate', {
-        job_description: jobDescription,
-        prompt: prompt,
-      })
+      const formData = new FormData()
+      formData.append('job_description', jobDescription)
+      formData.append('prompt', prompt)
+      formData.append('resume', file)
+
+      const response = await client.post('/evaluate', formData)
       setStatus('success')
       setResult(response.data.result)
     } catch (err) {
