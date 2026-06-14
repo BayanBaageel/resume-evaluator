@@ -54,7 +54,7 @@ function EvaluatorPage() {
           {status === 'idle' && <p>Results will appear here after you submit.</p>}
           {status === 'loading' && <p>Evaluating...</p>}
           {status === 'error' && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          {status === 'success' && <p>{result}</p>}
+          {status === 'success' && <pre style={{ whiteSpace: 'pre-wrap', fontFamily: 'inherit' }}>{result}</pre>}
         </div>
       </section>
     </main>

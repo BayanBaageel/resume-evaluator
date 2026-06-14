@@ -33,12 +33,13 @@ function RegisterPage() {
   }
 
   return (
-    <main>
-      <section className="panel" style={{ maxWidth: '480px', margin: '2rem auto' }}>
-        <h2>Register</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={handleSubmit}>
+  <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh' }}>
+    <section className="panel" style={{ width: '100%', maxWidth: '420px' }}>
+      <h2>Register</h2>
+      {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
+      <form onSubmit={handleSubmit}>
 
+        <div style={{ marginBottom: '1rem' }}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -46,8 +47,11 @@ function RegisterPage() {
             placeholder="name@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            style={{ width: '100%', marginTop: '0.4rem' }}
           />
+        </div>
 
+        <div style={{ marginBottom: '1rem' }}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -55,8 +59,11 @@ function RegisterPage() {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            style={{ width: '100%', marginTop: '0.4rem' }}
           />
+        </div>
 
+        <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="confirm-password">Confirm Password</label>
           <input
             type="password"
@@ -64,19 +71,21 @@ function RegisterPage() {
             placeholder="Confirm your password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            style={{ width: '100%', marginTop: '0.4rem' }}
           />
+        </div>
 
-          <button type="submit" className="register-btn" disabled={loading}>
-            {loading ? 'Registering...' : 'Register'}
-          </button>
+        <button type="submit" className="register-btn" disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
 
-        </form>
-        <p style={{ marginTop: '1rem', textAlign: 'center' }}>
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
-      </section>
-    </main>
-  )
+      </form>
+      <p style={{ marginTop: '1rem', textAlign: 'center' }}>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
+    </section>
+  </main>
+)
 }
 
 export default RegisterPage

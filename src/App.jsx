@@ -10,14 +10,19 @@ function ProtectedRoute({ children }) {
   return user ? children : <Navigate to="/login" />
 }
 
+function PublicRoute({ children }) {
+  const { user } = useAuth()
+  return user ? <Navigate to="/evaluate" /> : children
+}
+
 function App() {
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
         <Route path="/evaluate" element={
           <ProtectedRoute>
             <EvaluatorPage />

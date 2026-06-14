@@ -76,6 +76,8 @@ main {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  justify-content: center;
+  padding-top: 10rem;
 }
 
 .panel {
@@ -104,6 +106,8 @@ label {
 }
 
 textarea,
+input[type="email"],
+input[type="password"],
 input[type="file"] {
   width: 100%;
   margin-bottom: 1.25rem;

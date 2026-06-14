@@ -25,6 +25,7 @@ function useEvaluator() {
     }
 
     setStatus('loading')
+    setResult(null)
 
     try {
       const formData = new FormData()

@@ -29,12 +29,13 @@ function LoginPage() {
   }
 
   return (
-    <main>
-      <section className="panel" style={{ maxWidth: '480px', margin: '2rem auto' }}>
-        <h2>Login</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={handleSubmit}>
+  <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh' }}>
+    <section className="panel" style={{ width: '100%', maxWidth: '420px' }}>
+      <h2>Login</h2>
+      {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
+      <form onSubmit={handleSubmit}>
 
+        <div style={{ marginBottom: '1rem' }}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -42,8 +43,11 @@ function LoginPage() {
             placeholder="name@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            style={{ width: '100%', marginTop: '0.4rem' }}
           />
+        </div>
 
+        <div style={{ marginBottom: '1.5rem' }}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -51,19 +55,21 @@ function LoginPage() {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            style={{ width: '100%', marginTop: '0.4rem' }}
           />
+        </div>
 
-          <button type="submit" className="login-btn" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
+        <button type="submit" className="login-btn" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
 
-        </form>
-        <p style={{ marginTop: '1rem', textAlign: 'center' }}>
-          Don't have an account? <Link to="/register">Register</Link>
-        </p>
-      </section>
-    </main>
-  )
+      </form>
+      <p style={{ marginTop: '1rem', textAlign: 'center' }}>
+        Don't have an account? <Link to="/register">Register</Link>
+      </p>
+    </section>
+  </main>
+)
 }
 
 export default LoginPage
